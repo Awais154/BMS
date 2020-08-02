@@ -1,0 +1,84 @@
+﻿@model List<DATA.Domains.Ledger>
+@{
+    var AcountHolder = (List<DATA.Domains.AccountHolder>)TempData["AccountHolder"];
+    var InsertionType = (List<DATA.Domains.InsertionType>)TempData["InsertionType"];
+}
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Expense</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Add</li>
+                        <li class="breadcrumb-item">Expense</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <form method="post" action="~/Ledger/AddExpense">
+                        <div class="row">
+                            <div class="col-12  align-self-center">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDate">Acount Holders</label>
+                                        <select class="form-control" name="AccountHolderId">
+                                            @foreach (var item in AcountHolder)
+                                            {
+                                                <option name="AccountHolderId" value="@item.Id">@item.FirstName - @item.Contact - @item.Detail</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDate">Insertion Type</label>
+                                        <select class="form-control" name="InsertionTypeId">
+                                            @foreach (var item in InsertionType)
+                                            {
+                                                <option name="AccountHolderId" value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="val">Amount Paid</label>
+                                        <input type="number" id="val"  class="form-control rounded" name="AmountOut">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="btn btn-primary" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script>
+
+    document.getElementById("val").value = sumVal;
+
+    function calBalance() {
+        var Paid = parseInt(document.getElementById("paid").value);
+        var GrandTotal = parseInt(document.getElementById("val").value);
+        balance = GrandTotal - Paid;
+        document.getElementById("bal").value = balance;
+    }
+
+</script>
+
+
+
+

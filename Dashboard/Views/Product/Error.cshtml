@@ -1,0 +1,43 @@
+﻿@model string
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>Error</h2>
+
+<main>
+    <div class="container-fluid">
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">404 Page</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item">Page</li>
+                        <li class="breadcrumb-item active"><a href="#">404 Page</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+        <!-- START: Card Data-->
+        <div class="row">
+            <div class="col-12  mt-3">
+                <div class="lockscreen  mt-5 mb-5">
+                    <div class="jumbotron mb-0 text-center theme-background rounded">
+                        <h1 class="display-3 font-weight-bold"> 404</h1>
+                        <h5><i class="ion ion-alert pr-2"></i>Oops! Something went wrong</h5>
+                        <p>@Model</p>
+                        <a href="~/product/GetProductToPurchase" class="btn btn-primary">Go Back</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- END: Card DATA-->
+    </div>
+</main>

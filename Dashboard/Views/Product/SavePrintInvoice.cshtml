@@ -1,0 +1,91 @@
+﻿@model List<Dashboard.Models.ProductsModel>
+@{
+    int counter = 0;
+
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <link href="~/dist/css/style.css" rel="stylesheet" />
+    <link href="~/dist/css/print.css" rel="stylesheet" />
+    <link href="~/dist/css/main.css" rel="stylesheet" />
+    <script src="~/dist/js/invoiceJs/example.js"></script>
+    <script src="~/dist/js/invoiceJs/jquery-1.3.2.min.js"></script>
+
+</head>
+<body>
+    <div id="page-wrap">
+        <textarea id="header">Purchase INVOICE</textarea>
+        <div style="clear:both"></div>
+        <div id="customer">
+            <h4>Company Name</h4>
+            <table id="meta">
+                <tr>
+                    <td class="meta-head">Invoice #</td>
+                    <td>####</td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Date/Time</td>
+                    <td>@DateTime.Now</td>
+                </tr>
+                <tr>
+                    <td class="meta-head">Amount Due</td>
+                    <td>$875.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <table id="items">
+            <tr>
+                <th>#</th>
+                <th>Name </th>
+                <th>Detail</th>
+                <th>Cost</th>
+                <th>Quantity</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                counter++;
+                <tr role="row" class="odd">
+                    <td style="text-align:center">@counter</td>
+                    <td style="text-align:center">@item.Name</td>
+                    <td>
+                        <span>@item.Brand</span>
+                        <span>@item.Size</span>
+                        <span>@item.Color</span>
+                        <br />@item.Detail
+                    </td>
+                    <td style="text-align:center">@item.Cost</td>
+                    <td style="text-align:center">@item.Quantity</td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="2" class="blank"> </td>
+                <td colspan="2" class="total-line">Subtotal</td>
+                <td class="total-value"><div id="subtotal">$875.00</div></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blank"> </td>
+                <td colspan="2" class="total-line">Amount</td>
+                <td class="total-value"><div id="total">$875.00</div></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blank"> </td>
+                <td colspan="2" class="total-line">Amount Paid</td>
+                <td class="total-value"><textarea id="paid">$0.00</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blank"> </td>
+                <td colspan="2" class="total-line balance">Balance Due</td>
+                <td class="total-value balance"><div class="due">$875.00</div></td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+﻿@model Dashboard.Models.UserModel
+
+@{
+    var alert = (Dashboard.Models.Alert)TempData["alert"];
+
+    string alertType = string.Empty;
+    string alertMessage = string.Empty;
+
+    if (alert != null)
+    {
+        alertType = alert.AlertType;
+        alertMessage = alert.AlertMessage;
+    }
+
+}
+
+
+<main>
+    <div class="container-fluid">
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">@Model.FirstName</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">User</li>
+                        <li class="breadcrumb-item">Add/Edit</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+        @if (alertType == "error")
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+        @if (alertType == "success")
+        {
+            <div class="alert alert-primary" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+        <form method="post" action="~/user/updateuser">
+            <!-- START: Card Data-->
+            <div class="row">
+                <div class="col-12 mt-4">
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Add User</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                @Html.LabelFor(model=>model.FirstName)
+                                                @Html.ValidationMessageFor(model=>model.FirstName)
+                                                @Html.TextBoxFor(model=>model.FirstName, new { @class="form-control rounded",disabled = "disabled"})
+                                                </div>
+                                            <div class="form-group col-md-6">
+                                                @Html.LabelFor(model => model.LastName)
+                                                @Html.ValidationMessageFor(model => model.LastName)
+                                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control rounded",disabled = "disabled" })
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                @Html.LabelFor(model => model.Email)
+                                                @Html.ValidationMessageFor(model => model.Email)
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control rounded",disabled = "disabled" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                @Html.LabelFor(model => model.Password)
+                                                @Html.ValidationMessageFor(model => model.Password)
+                                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control rounded" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END: Card DATA-->
+        </form>
+    </div>
+</main>
+

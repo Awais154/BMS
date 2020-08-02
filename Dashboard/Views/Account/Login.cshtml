@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pollo Admin</title>
+    <link rel="shortcut icon" href="~/dist/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="~/dist/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/dist/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/dist/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="~/dist/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="~/dist/vendors/flags-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/dist/vendors/flag-select/css/flags.css">
+    <link rel="stylesheet" href="~/dist/vendors/social-button/bootstrap-social.css" />
+    <link rel="stylesheet" href="~/dist/css/main.css">
+</head>
+<body id="main-container" class="default">
+    <div class="container">
+        <div class="row vh-100 justify-content-between align-items-center">
+            <div class="col-12">
+                <form action="~/account/login" method="post" class="row row-eq-height lockscreen  mt-5 mb-5">
+                    <div class="lock-image col-12 col-sm-5"></div>
+                    <div class="login-form col-12 col-sm-7">
+                        <div class="form-group mb-3">
+                            <label for="emailaddress">Email address</label>
+                            <input class="form-control" type="email" id="emailaddress" name="EmailAddress" required="" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" required="" name="Password" id="password" placeholder="Enter your password">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
+                                <label class="custom-control-label" for="checkbox-signin">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <button class="btn btn-primary" type="submit"> Log In </button>
+                        </div>
+                        <div class="mt-2">Don't have an account? <a href="page-register.html">Create an Account</a></div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/dist/vendors/moment/moment.js"></script>
+    <script src="~/dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/dist/vendors/flag-select/js/jquery.flagstrap.min.js"></script>
+</body>
+</html>

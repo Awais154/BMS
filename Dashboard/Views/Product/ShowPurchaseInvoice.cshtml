@@ -1,0 +1,158 @@
+﻿@model List<Dashboard.Models.ProductsModel>
+@{
+    int counter = 0;
+
+    var AcountHolder = (List<DATA.Domains.AccountHolder>)TempData["AccountHolder"];
+    var InsertionType = (List<DATA.Domains.InsertionType>)TempData["InsertionType"];
+    decimal result = default(decimal);
+}
+<main>
+
+    <div class="container-fluid">
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Purchase Invoice</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Purchase</li>
+                        <li class="breadcrumb-item">List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Generate Invoice</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <a class="btn btn-warning rounded-btn" href="~/product/SaveInvoice/"><i class="icon-briefcase"> Save-Bill</i></a>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <table id="example" class="display table dataTable table-striped table-bordered" role="grid" aria-describedby="example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 60px;">Name </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 132px;">Cost</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Availability: activate to sort column ascending" style="width: 132px;">Quantity</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Detail: activate to sort column ascending" style="width: 132px;">Detail</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="ImeNumber: activate to sort column ascending" style="width: 132px;">ImeNumber</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 60px;">Action </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            result = result + @item.Quantity * @item.Cost;
+                                            counter++;
+                                            <tr role="row" class="odd">
+                                                <td>@item.Name</td>
+                                                <td>@item.Cost</td>
+                                                <td>@item.Quantity</td>
+                                                <td>
+                                                    <span class="badge p-2 badge-success mb-1">@item.Brand</span>
+                                                    <span class="badge p-2 badge-primary mb-1">@item.Size</span>
+                                                    <span class="badge p-2 badge-warning mb-1"> @item.Color</span>
+                                                    <br />@item.Detail
+                                                </td>
+                                                <td><input type="text" name="ImeNumber" value="@item.ImeNumber" style="display:none">@item.ImeNumber</td>
+                                                <td style="display:none;"><input type="text">@result</td>
+                                                <td>
+                                                    <a href="~/product/RemoveProductPurchaseInvoice?productId=@item.ProductId" type="submit" class="btn btn-warning mb-2"><i class="icon-basket"></i>Remove</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <form method="post" action="~/product/SavePurchaseInvoice">
+                        <div class="row">
+                            <div class="col-12  align-self-center">
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDate">Acount Holders</label>
+                                        <select class="form-control" name="AccountHolderId">
+                                            @foreach (var item in AcountHolder)
+                                            {
+                                                <option name="AccountHolderId" value="@item.Id">@item.FirstName - @item.Contact - @item.Detail</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputDate">Insertion Type</label>
+                                        <select class="form-control" name="InsertionTypeId">
+                                            @foreach (var item in InsertionType)
+                                            {
+                                                <option name="AccountHolderId" value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="val">Total Amount</label>
+                                        <input type="number" value="@result" id="val" readonly class="form-control rounded" name="Total">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="paid">Amount Paid</label>
+                                        <input type="number" class="form-control" id="paid" onkeyup="calBalance()" name="AmountOut">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="bal">Balance</label>
+                                        <input type="number" readonly class="form-control" style="text-transform: uppercase;" id="bal" name="Balance">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        @*<button type="button" class="btn btn-primary" onclick="calBalance()">Calculate</button>*@
+                                        <input class="btn btn-primary" type="submit" value="Save&Print">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+
+    document.getElementById("val").value = sumVal;
+
+    function calBalance() {
+        var Paid = parseInt(document.getElementById("paid").value);
+        var GrandTotal = parseInt(document.getElementById("val").value);
+        balance = GrandTotal - Paid;
+        document.getElementById("bal").value = balance;
+    }
+
+</script>
+
+
+

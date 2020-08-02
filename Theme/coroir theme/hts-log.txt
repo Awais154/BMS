@@ -1,0 +1,24 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 28 Oct 2019 15:33:06 at http://html.phoenixcoded.net/mintone/bootstrap/default/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://html.phoenixcoded.net/mintone/bootstrap/default/index.html -O1 "F:\Project\Corior\Theme\coroir theme" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/images/product/prod-2.jpg (from html.phoenixcoded.net/mintone/bootstrap/default/index-shop.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/images/product/prod-3.jpg (from html.phoenixcoded.net/mintone/bootstrap/default/index-shop.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/images/product/prod-4.jpg (from html.phoenixcoded.net/mintone/bootstrap/default/index-shop.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/images/product/prod-5.jpg (from html.phoenixcoded.net/mintone/bootstrap/default/index-shop.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/js/analytics.js (from html.phoenixcoded.net/mintone/bootstrap/default/layout-horizontal.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/images/favicon.ico (from html.phoenixcoded.net/mintone/bootstrap/default/bc_toasts.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/plugins/ekko-lightbox/css/ekko-lightbox.min.css (from html.phoenixcoded.net/mintone/bootstrap/default/email_read.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/plugins/lightbox2-master/css/lightbox.min.css (from html.phoenixcoded.net/mintone/bootstrap/default/email_read.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/css/pages/pages.css (from html.phoenixcoded.net/mintone/bootstrap/default/email_read.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/plugins/ekko-lightbox/js/ekko-lightbox.min.js (from html.phoenixcoded.net/mintone/bootstrap/default/email_read.html)
+15:37:55	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/plugins/lightbox2-master/js/lightbox.min.js (from html.phoenixcoded.net/mintone/bootstrap/default/email_read.html)
+15:37:56	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/cropped.jpg (from html.phoenixcoded.net/mintone/bootstrap/default/image_crop.html)
+15:37:56	Error: 	"Not Found" (404) at link html.phoenixcoded.net/mintone/bootstrap/default/assets/css/images/loading.gif (from html.phoenixcoded.net/mintone/bootstrap/default/assets/css/plugins/lightbox.min.css)
+
+HTTrack Website Copier/3.49-2 mirror complete in 4 minutes 51 seconds : 344 links scanned, 330 files written (12842200 bytes overall) [5745248 bytes received at 19743 bytes/sec], 9623491 bytes transferred using HTTP compression in 279 files, ratio 24%, 14.9 requests per connection
+(13 errors, 0 warnings, 0 messages)

@@ -1,0 +1,114 @@
+﻿@model DATA.Domains.Product
+
+@{
+    var alert = (Dashboard.Models.Alert)TempData["alert"];
+    var AccountHolderTypes = (List<DATA.Domains.Product>)TempData["product"];
+    string alertType = string.Empty;
+    string alertMessage = string.Empty;
+
+    if (alert != null)
+    {
+        alertType = alert.AlertType;
+        alertMessage = alert.AlertMessage;
+    }
+
+    var id = Model.Id;
+}
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Edit Product</h4></div>
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item">Edit</li>
+
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        @if (alertType == "error")
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+        @if (alertType == "success")
+        {
+            <div class="alert alert-primary" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit/Delete</h4>
+                        <a class="btn btn-warning rounded-btn" href="~/product/delete/@id" style="margin-left:970px"><i class="icon-trash"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form method="post" action="~/product/Update">
+                                        <input type="text" value="@Model.Id" name="id" style="display:none">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Name</label>
+                                                <input type="text" value="@Model.Name" class="form-control rounded" name="name" id="inputEmail4" placeholder="Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword4">Quantity</label>
+                                                <input type="text" value="@Model.Availability" class="form-control" id="inputPassword4" name="availability" placeholder="Availability">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Price</label>
+                                                <input type="number" value="@Model.Price" class="form-control rounded" id="inputEmail4" name="price" placeholder="Contact">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword4">Cost</label>
+                                                <input type="number" value="@Model.Cost" class="form-control" id="inputPassword4" name="Cost" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword4">Size</label>
+                                            <input type="text" value="@Model.Size" class="form-control" id="inputPassword4" name="size" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress">Brand</label>
+                                            <input type="text" value="@Model.Brand" class="form-control" id="inputAddress" name="brand" placeholder="1234 Main St">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Detail</label>
+                                            <input type="text" value="@Model.Detail" class="form-control" id="" name="Detail" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Color</label>
+                                            <input type="text" value="@Model.Color" class="form-control" id="" name="color" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Ime Number</label>
+                                            <input type="text" value="@Model.ImeNumber" class="form-control" id="" name="imenumber" placeholder="">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+

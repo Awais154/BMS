@@ -1,0 +1,234 @@
+﻿@model List<DATA.Domains.AccountHolder>
+@{
+    int counter = 0;
+}
+    <body>
+        <main>
+            <div class="container-fluid">
+                <!-- START: Breadcrumbs-->
+                <div class="row ">
+                    <div class="col-12  align-self-center">
+                        <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                            <div class="w-sm-100 mr-auto"><h4 class="mb-0">Search</h4></div>
+
+                            <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                                <li class="breadcrumb-item">Account Holder</li>
+                                <li class="breadcrumb-item">Search</li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Breadcrumbs-->
+                <div class="row">
+                    <div class="col-12 col-sm-12 mt-3">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div class="dt-buttons btn-group flex-wrap">
+                                    <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example" type="button">
+                                        <span>Copy</span>
+                                    </button>
+                                    <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example" type="button">
+                                        <span>CSV</span>
+                                    </button>
+                                    <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example" type="button">
+                                        <span>Excel</span>
+                                    </button>
+                                    <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button">
+                                        <span>PDF</span>
+                                    </button>
+                                    <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="example" id="print" type="button">
+                                        <span>Print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <table id="myTable" class="display table dataTable table-striped table-bordered" role="grid" aria-describedby="example_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 60px;">#</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 132px;">Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 132px;">Contact / Address</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 132px;">Bank Account</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 132px;">Detail</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 132px;">Type</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 132px;">Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col"><i class="icon-magnifier"></i></th>
+                                                    <th scope="col"><input class="form-control" id="name" onkeyup="SearchName()" /></th>
+                                                    <th scope="col"><input class="form-control" id="address" onkeyup="SearchAddress()" /></th>
+                                                    <th scope="col"><input class="form-control" id="bank" onkeyup="SearchBankAccount()" /></th>
+                                                    <th scope="col"><input class="form-control" id="Detail" onkeyup="SearchDetail()" /></th>
+                                                    <th scope="col"><input class="form-control" id="type" onkeyup="Searchtype()" style="width:100px" /></th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    counter++;
+                                                    <tr role="row" class="odd">
+                                                        <td scope="row">@counter</td>
+                                                        <td>@item.FirstName  @item.LastName</td>
+                                                        <td>@item.Contact | @item.Address</td>
+                                                        <td>@item.BankAccountNumber</td>
+                                                        <td>@item.Detail</td>
+                                                        <td>@item.AccountHolderType.Name</td>
+                                                        <td><a class="btn btn-warning rounded-btn" href="~/accountholder/edit/@item.Id"><i class="icon-pencil"></i></a></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button page-item previous disabled" id="example_previous">
+                                                    <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                                </li>
+                                                <li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                                <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                                                <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                                                <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                                                <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                                                <li class="paginate_button page-item next" id="example_next"><a href="#" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            function SearchName() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("name");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function SearchAddress() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("address");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function SearchBankAccount() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("bank");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[3];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function SearchDetail() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("Detail");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[4];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function Searchtype() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("type");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[5];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+        </script>
+      
+        <script src="~/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
+        <script src="~/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
+        <script src="~/dist/vendors/moment/moment.js"></script>
+        <script src="~/dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="~/dist/vendors/flag-select/js/jquery.flagstrap.min.js"></script>
+        <!-- END: Template JS-->
+        <!-- START: APP JS-->
+        <script src="~/dist/js/app.js"></script>
+        <!-- END: APP JS-->
+        <!-- START: Page Vendor JS-->
+        <script src="~/dist/vendors/datatable/js/jquery.dataTables.min.js"></script>
+        <script src="~/dist/vendors/datatable/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/dist/vendors/datatable/jszip/jszip.min.js"></script>
+        <script src="~/dist/vendors/datatable/pdfmake/pdfmake.min.js"></script>
+        <script src="~/dist/vendors/datatable/pdfmake/vfs_fonts.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/buttons.colVis.min.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/buttons.flash.min.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/buttons.html5.min.js"></script>
+        <script src="~/dist/vendors/datatable/buttons/js/buttons.print.min.js"></script>
+        <!-- END: Page Vendor JS-->
+        <script src="~/dist/js/datatable.script.js"></script>
+        <!-- START: Page Script JS-->
+        <script src="~/dist/js/datatable.script.js"></script>
+        <!-- END: Page Script JS-->
+    </body>

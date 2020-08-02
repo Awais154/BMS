@@ -1,0 +1,167 @@
+﻿@model Dashboard.Models.ProductModel
+
+@{
+    var alert = (Dashboard.Models.Alert)TempData["alert"];
+
+    string alertType = string.Empty;
+    string alertMessage = string.Empty;
+
+    if (alert != null)
+    {
+        alertType = alert.AlertType;
+        alertMessage = alert.AlertMessage;
+    }
+
+    var categories = (List<DATA.Domains.Category>)TempData["Categories"];
+
+}
+
+<main>
+    <div class="container-fluid">
+        @if (alertType == "error")
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+        @if (alertType == "success")
+        {
+            <div class="alert alert-primary" role="alert">
+                <strong>@alertType!</strong>  @alertMessage
+            </div>
+        }
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Save Category</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="~/product/savecategory" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="categoryname">Category Name</label>
+                                                <input type="text" class="form-control rounded" name="CategoryName" placeholder="Enter your category name">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Category</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Add Product</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item">Add</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+        <!-- START: Card Data-->
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Add</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post))
+                                    {
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="categories">Categories</label>
+                                                <select name="CategoryId" class="form-control rounded">
+                                                    @foreach (var item in categories)
+                                                    {
+                                                    <option value="@item.Id">
+                                                    
+                                                    @item.Name
+                                                    </option>
+
+                                                    }</select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="name">Name</label>
+                                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control rounded", style="text-transform: uppercase;", @id = "name", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Name, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Price">Price</label>
+                                                @Html.TextBoxFor(x => x.Price, new { @class = "form-control rounded", style = "text-transform: uppercase;", type = "number", @id = "Price", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Price, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Price">Cost</label>
+                                                @Html.TextBoxFor(x => x.Cost, new { @class = "form-control rounded", style = "text-transform: uppercase;", type = "number", @id = "Cost", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Cost, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="availability">Availability</label>
+                                                @Html.TextBoxFor(x => x.Availability, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Availability", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Availability, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="size">Size</label>
+                                                @Html.TextBoxFor(x => x.Size, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Availability", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Size, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="brand">Brand</label>
+                                                @Html.TextBoxFor(x => x.Brand, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Availability", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Brand, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="color">Color</label>
+                                                @Html.TextBoxFor(x => x.Color, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Color", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Color, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="barcode">BarCode</label>
+                                                @Html.TextBoxFor(x => x.BarCode, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Color", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.BarCode, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="imenumber">ImeNumber</label>
+                                                @Html.TextBoxFor(x => x.ImeNumber, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Color", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.ImeNumber, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="Detail">Detail</label>
+                                                @Html.TextBoxFor(x => x.Detail, new { @class = "form-control rounded", style = "text-transform: uppercase;", @id = "Detail", @onchange = "onchangeevent();" })
+                                                @Html.ValidationMessageFor(x => x.Detail, string.Empty, new { @style = "color:red" })
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Card DATA-->
+    </div>
+</main>
+
+

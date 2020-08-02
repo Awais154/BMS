@@ -1,0 +1,179 @@
+﻿@model List<DATA.Domains.Product>
+@{
+    int counter = 0;
+}
+<body>
+<main>
+    <div class="container-fluid">
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Search</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item">Search</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        @*END: Breadcrumbs*@
+        <div class="row">
+            <div class="col-12 col-sm-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <table id="example" class="display table dataTable table-striped table-bordered" role="grid" aria-describedby="example_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 60px;">Name </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 132px;">Price</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Cost: activate to sort column ascending" style="width: 132px;">Cost</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Availability: activate to sort column ascending" style="width: 132px;">Quantity</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Detail: activate to sort column ascending" style="width: 132px;">Detail</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="ImeNumber: activate to sort column ascending" style="width: 132px;">ImeNumber</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 132px;">Action</th>
+
+                                        </tr>
+                                        @*<tr>
+                                            <th scope="col"><i class="icon-magnifier"></i></th>
+                                            <th scope="col"><input class="form-control" id="name" onkeyup="SearchName()" /></th>
+                                            <th scope="col"><input class="form-control" id="price" onkeyup="SearchPrice()" /></th>
+                                            <th scope="col"><input class="form-control" id="availability" onkeyup="SearchAvailability()" /></th>
+                                            <th scope="col"><input class="form-control" id="detail" onkeyup="Searcdetail()" style="width:100px" /></th>
+                                            <th scope="col"><input class="form-control" id="imenumber" onkeyup="Searchimenum()" style="width:100px" /></th>
+                                            <th scope="col"></th>
+                                        </tr>*@
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            counter++;
+                                        <tr role="row" class="odd">
+                                            <td>@item.Name</td>
+                                            <td>@item.Price</td>
+                                            <td>@item.Cost</td>
+                                            <td>@item.Availability</td>
+                                            <td>
+                                                <span class="badge p-2 badge-success mb-1">@item.Brand</span>
+                                                <span class="badge p-2 badge-primary mb-1">@item.Size</span>
+                                                <span class="badge p-2 badge-warning mb-1"> @item.Color</span><br />@item.Detail
+                                            </td>
+                                            <td>@item.ImeNumber</td>
+                                            <td><a class="btn btn-warning rounded-btn" href="~/product/edit/@item.Id"><i class="icon-pencil"></i></a></td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+
+@*<script>
+    function SearchName() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("name");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function SearchPrice() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("price");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function SearchAvailability() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("availability");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    function Searcdetail() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("detail");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[4];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function Searchimenum() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("imenumber");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>*@
